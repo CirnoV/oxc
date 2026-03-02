@@ -145,7 +145,11 @@
     :      ^
     `----
 
-Found 0 warnings and 9 errors.
+Found 9 errors in 1 file.
+
+Errors  Files
+     9  files/index.ts:4
+
 Finished in Xms on 1 file with 1 rules using X threads.
 ```
 

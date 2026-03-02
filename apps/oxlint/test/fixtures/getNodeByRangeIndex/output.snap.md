@@ -355,7 +355,11 @@
  9 | // Comment
    `----
 
-Found 0 warnings and 45 errors.
+Found 45 errors in 1 file.
+
+Errors  Files
+    45  files/index.ts:1
+
 Finished in Xms on 1 file with 1 rules using X threads.
 ```
 

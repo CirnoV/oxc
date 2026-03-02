@@ -275,7 +275,12 @@
    : ^
    `----
 
-Found 0 warnings and 16 errors.
+Found 16 errors in 2 files.
+
+Errors  Files
+     8  files/index.js:1
+     8  files/nested/index.js:1
+
 Finished in Xms on 2 files with 8 rules using X threads.
 ```
 

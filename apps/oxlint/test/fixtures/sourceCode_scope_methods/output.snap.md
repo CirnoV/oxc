@@ -291,7 +291,12 @@
     :                               ^^^^^^^^^^^^^^^^
     `----
 
-Found 0 warnings and 33 errors.
+Found 33 errors in 2 files.
+
+Errors  Files
+    17  files/index.js:1
+    16  files/index.cjs:1
+
 Finished in Xms on 2 files with 1 rules using X threads.
 ```
 

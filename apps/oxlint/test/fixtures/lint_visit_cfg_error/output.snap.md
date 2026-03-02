@@ -20,7 +20,12 @@
    :     ^
    `----
 
-Found 0 warnings and 3 errors.
+Found 3 errors in 2 files.
+
+Errors  Files
+     2  files/2.js:1
+     1  <unknown>
+
 Finished in Xms on 2 files with 1 rules using X threads.
 ```
 

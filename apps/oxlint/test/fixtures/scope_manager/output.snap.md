@@ -86,7 +86,11 @@
  58 |     
     `----
 
-Found 0 warnings and 6 errors.
+Found 6 errors in 1 file.
+
+Errors  Files
+     6  files/index.ts:1
+
 Finished in Xms on 1 file with 1 rules using X threads.
 ```
 

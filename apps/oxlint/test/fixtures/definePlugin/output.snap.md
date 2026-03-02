@@ -59,7 +59,12 @@
    :        ^
    `----
 
-Found 0 warnings and 8 errors.
+Found 8 errors in 2 files.
+
+Errors  Files
+     4  files/1.js:1
+     4  files/2.js:1
+
 Finished in Xms on 2 files with 2 rules using X threads.
 ```
 

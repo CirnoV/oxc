@@ -42,7 +42,11 @@
     : ^^^^^^^^^^^^^^^^^^^^^^^^^
     `----
 
-Found 0 warnings and 5 errors.
+Found 5 errors in 1 file.
+
+Errors  Files
+     5  files/index.js:1
+
 Finished in Xms on 1 file with 2 rules using X threads.
 ```
 

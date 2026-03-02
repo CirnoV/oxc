@@ -212,7 +212,12 @@
  7 | `-> e</Qux>;
    `----
 
-Found 0 warnings and 13 errors.
+Found 13 errors in 2 files.
+
+Errors  Files
+    10  files/index.js:2
+     3  files/index.jsx:1
+
 Finished in Xms on 2 files with 1 rules using X threads.
 ```
 

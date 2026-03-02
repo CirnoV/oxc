@@ -88,7 +88,11 @@
    `----
   help: Add `@param` tag with name.
 
-Found 0 warnings and 12 errors.
+Found 12 errors in 1 file.
+
+Errors  Files
+    12  files/index.js:4
+
 Finished in Xms on 1 file with 12 rules using X threads.
 ```
 

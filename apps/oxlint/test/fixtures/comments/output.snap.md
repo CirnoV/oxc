@@ -455,7 +455,13 @@
     : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     `----
 
-Found 0 warnings and 32 errors.
+Found 32 errors in 3 files.
+
+Errors  Files
+    13  files/comments.js:1
+    13  files/no_comments.js:1
+     6  files/hashbang.js:4
+
 Finished in Xms on 3 files with 1 rules using X threads.
 ```
 

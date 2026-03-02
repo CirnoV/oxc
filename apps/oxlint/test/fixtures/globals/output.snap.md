@@ -65,7 +65,13 @@
    : ^
    `----
 
-Found 0 warnings and 3 errors.
+Found 3 errors in 3 files.
+
+Errors  Files
+     1  files/index.js:1
+     1  files/nested/1.js:1
+     1  files/nested/2.js:1
+
 Finished in Xms on 3 files with 1 rules using X threads.
 ```
 

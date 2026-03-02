@@ -20,7 +20,11 @@
    `----
   help: Prefer === operator
 
-Found 1 warning and 1 error.
+Found 1 error in 1 file.
+
+Errors  Files
+     1  files/test.js:1
+
 Finished in Xms on 1 file with 94 rules using X threads.
 ```
 

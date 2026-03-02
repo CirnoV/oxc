@@ -363,7 +363,12 @@
    :     ^
    `----
 
-Found 0 warnings and 60 errors.
+Found 60 errors in 2 files.
+
+Errors  Files
+    30  files/1.js:1
+    30  files/2.js:1
+
 Finished in Xms on 2 files with 6 rules using X threads.
 ```
 

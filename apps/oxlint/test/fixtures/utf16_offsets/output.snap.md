@@ -49,7 +49,11 @@
  7 | }
    `----
 
-Found 0 warnings and 4 errors.
+Found 4 errors in 1 file.
+
+Errors  Files
+     4  files/index.js:1
+
 Finished in Xms on 1 file with 1 rules using X threads.
 ```
 

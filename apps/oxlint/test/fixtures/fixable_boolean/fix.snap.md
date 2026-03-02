@@ -10,7 +10,11 @@
    : ^^^^^^^^^^^^^^^^^^^
    `----
 
-Found 0 warnings and 1 error.
+Found 1 error in 1 file.
+
+Errors  Files
+     1  files/index.js:2
+
 Finished in Xms on 1 file with 2 rules using X threads.
 ```
 

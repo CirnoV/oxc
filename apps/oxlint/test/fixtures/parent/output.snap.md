@@ -99,7 +99,11 @@
    :                             ^
    `----
 
-Found 0 warnings and 12 errors.
+Found 12 errors in 1 file.
+
+Errors  Files
+    12  files/index.js:1
+
 Finished in Xms on 1 file with 1 rules using X threads.
 ```
 

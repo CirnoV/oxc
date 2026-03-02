@@ -8,7 +8,11 @@
   | Error: Whoops!
   |     at Object.create (<fixture>/plugin.ts:10:15)
 
-Found 0 warnings and 1 error.
+Found 1 error in 1 file.
+
+Errors  Files
+     1  <unknown>
+
 Finished in Xms on 1 file with 1 rules using X threads.
 ```
 
