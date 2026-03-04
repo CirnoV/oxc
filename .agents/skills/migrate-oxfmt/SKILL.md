@@ -42,22 +42,23 @@ This will:
 
 Biome option mapping:
 
-| Biome | oxfmt |
-|---|---|
-| `formatter.indentStyle` (`"tab"`/`"space"`) | `useTabs` (`true`/`false`) |
-| `formatter.indentWidth` | `tabWidth` |
-| `formatter.lineWidth` | `printWidth` |
-| `javascript.formatter.quoteStyle` | `singleQuote` |
-| `javascript.formatter.jsxQuoteStyle` | `jsxSingleQuote` |
-| `javascript.formatter.quoteProperties` (`"asNeeded"`) | `quoteProps` (`"as-needed"`) |
-| `javascript.formatter.trailingCommas` | `trailingComma` |
-| `javascript.formatter.semicolons` (`"always"`/`"asNeeded"`) | `semi` (`true`/`false`) |
-| `javascript.formatter.arrowParentheses` (`"asNeeded"`) | `arrowParens` (`"avoid"`) |
-| `formatter.bracketSameLine` | `bracketSameLine` |
-| `formatter.bracketSpacing` | `bracketSpacing` |
-| `formatter.attributePosition` (`"multiline"`) | `singleAttributePerLine` (`true`) |
+| Biome                                                       | oxfmt                             |
+| ----------------------------------------------------------- | --------------------------------- |
+| `formatter.indentStyle` (`"tab"`/`"space"`)                 | `useTabs` (`true`/`false`)        |
+| `formatter.indentWidth`                                     | `tabWidth`                        |
+| `formatter.lineWidth`                                       | `printWidth`                      |
+| `javascript.formatter.quoteStyle`                           | `singleQuote`                     |
+| `javascript.formatter.jsxQuoteStyle`                        | `jsxSingleQuote`                  |
+| `javascript.formatter.quoteProperties` (`"asNeeded"`)       | `quoteProps` (`"as-needed"`)      |
+| `javascript.formatter.trailingCommas`                       | `trailingComma`                   |
+| `javascript.formatter.semicolons` (`"always"`/`"asNeeded"`) | `semi` (`true`/`false`)           |
+| `javascript.formatter.arrowParentheses` (`"asNeeded"`)      | `arrowParens` (`"avoid"`)         |
+| `formatter.bracketSameLine`                                 | `bracketSameLine`                 |
+| `formatter.bracketSpacing`                                  | `bracketSpacing`                  |
+| `formatter.attributePosition` (`"multiline"`)               | `singleAttributePerLine` (`true`) |
 
 Notes (both sources):
+
 - Fails if `.oxfmtrc.json` already exists. Delete it first if you want to re-run.
 - If no source config is found, creates a blank `.oxfmtrc.json` instead.
 - `overrides` cannot be auto-migrated for either source and must be converted manually.
@@ -74,11 +75,11 @@ Prettier and Biome default is 80, oxfmt default is 100. The migration tool sets 
 
 These Prettier options are skipped during migration:
 
-| Option | Status |
-|---|---|
-| `endOfLine: "auto"` | Not supported. Use `"lf"` or `"crlf"` explicitly |
-| `experimentalTernaries` | Not supported in JS/TS files yet |
-| `experimentalOperatorPosition` | Not supported in JS/TS files yet |
+| Option                         | Status                                           |
+| ------------------------------ | ------------------------------------------------ |
+| `endOfLine: "auto"`            | Not supported. Use `"lf"` or `"crlf"` explicitly |
+| `experimentalTernaries`        | Not supported in JS/TS files yet                 |
+| `experimentalOperatorPosition` | Not supported in JS/TS files yet                 |
 
 ### sortPackageJson (Prettier only)
 
@@ -135,21 +136,21 @@ Sort import statements, inspired by `eslint-plugin-perfectionist/sort-imports` (
 
 Replaces `prettier-plugin-tailwindcss`. Auto-migrated with renamed options:
 
-| Prettier (top-level) | oxfmt (`sortTailwindcss.*`) |
-|---|---|
-| `tailwindConfig` | `config` |
-| `tailwindStylesheet` | `stylesheet` |
-| `tailwindFunctions` | `functions` |
-| `tailwindAttributes` | `attributes` |
-| `tailwindPreserveWhitespace` | `preserveWhitespace` |
-| `tailwindPreserveDuplicates` | `preserveDuplicates` |
+| Prettier (top-level)         | oxfmt (`sortTailwindcss.*`) |
+| ---------------------------- | --------------------------- |
+| `tailwindConfig`             | `config`                    |
+| `tailwindStylesheet`         | `stylesheet`                |
+| `tailwindFunctions`          | `functions`                 |
+| `tailwindAttributes`         | `attributes`                |
+| `tailwindPreserveWhitespace` | `preserveWhitespace`        |
+| `tailwindPreserveDuplicates` | `preserveDuplicates`        |
 
 ### Other Extensions
 
-| Option | Default | Description |
-|---|---|---|
-| `insertFinalNewline` | `true` | Whether to add a final newline at end of file |
-| `sortPackageJson` | `true` | Sort `package.json` keys. Set `{ "sortScripts": true }` to also sort scripts |
+| Option               | Default | Description                                                                  |
+| -------------------- | ------- | ---------------------------------------------------------------------------- |
+| `insertFinalNewline` | `true`  | Whether to add a final newline at end of file                                |
+| `sortPackageJson`    | `true`  | Sort `package.json` keys. Set `{ "sortScripts": true }` to also sort scripts |
 
 ## Step 4: Update CI and Scripts
 
@@ -171,13 +172,13 @@ npx oxfmt@latest --check
 
 ### Common CLI Options
 
-| Prettier / Biome | oxfmt |
-|---|---|
-| `prettier --write .` / `biome format --write .` | `oxfmt` (default: cwd, `--write` mode) |
-| `prettier --check .` / `biome check .` | `oxfmt --check` |
-| `prettier --list-different .` | `oxfmt --list-different` |
-| `prettier --config path` | `oxfmt --config path` |
-| `prettier --ignore-path .prettierignore` | `oxfmt --ignore-path .prettierignore` |
+| Prettier / Biome                                | oxfmt                                        |
+| ----------------------------------------------- | -------------------------------------------- |
+| `prettier --write .` / `biome format --write .` | `oxfmt` (default: cwd, `--write` mode)       |
+| `prettier --check .` / `biome check .`          | `oxfmt --check`                              |
+| `prettier --list-different .`                   | `oxfmt --list-different`                     |
+| `prettier --config path`                        | `oxfmt --config path`                        |
+| `prettier --ignore-path .prettierignore`        | `oxfmt --ignore-path .prettierignore`        |
 | `cat file \| prettier --stdin-filepath=file.ts` | `cat file \| oxfmt --stdin-filepath=file.ts` |
 
 ### File Type Coverage
@@ -199,4 +200,3 @@ npx oxfmt@latest --check
 - [CLI Reference](https://oxc.rs/docs/guide/usage/formatter/cli.html)
 - [Config File Reference](https://oxc.rs/docs/guide/usage/formatter/config-file-reference.html)
 - [Unsupported Features](https://oxc.rs/docs/guide/usage/formatter/unsupported-features.html)
-

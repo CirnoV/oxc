@@ -23,15 +23,15 @@ This reads your ESLint flat config and generates a `.oxlintrc.json` file.
 
 ### Key Options
 
-| Option | Description |
-|---|---|
-| `--merge` | Merge with an existing `.oxlintrc.json` instead of overwriting |
-| `--type-aware` | Include type-aware rules (requires running oxlint with `--type-aware`) |
-| `--with-nursery` | Include experimental rules still under development |
-| `--js-plugins [bool]` | Enable/disable ESLint plugin migration via `jsPlugins` (default: enabled) |
-| `--details` | List rules that could not be migrated |
-| `--replace-eslint-comments` | Convert `// eslint-disable` comments to `// oxlint-disable` |
-| `--output-file <file>` | Specify output path (default: `.oxlintrc.json`) |
+| Option                      | Description                                                               |
+| --------------------------- | ------------------------------------------------------------------------- |
+| `--merge`                   | Merge with an existing `.oxlintrc.json` instead of overwriting            |
+| `--type-aware`              | Include type-aware rules (requires running oxlint with `--type-aware`)    |
+| `--with-nursery`            | Include experimental rules still under development                        |
+| `--js-plugins [bool]`       | Enable/disable ESLint plugin migration via `jsPlugins` (default: enabled) |
+| `--details`                 | List rules that could not be migrated                                     |
+| `--replace-eslint-comments` | Convert `// eslint-disable` comments to `// oxlint-disable`               |
+| `--output-file <file>`      | Specify output path (default: `.oxlintrc.json`)                           |
 
 If your ESLint config is not at the default location, pass the path explicitly:
 
@@ -47,21 +47,21 @@ After migration, review the generated `.oxlintrc.json`.
 
 The migration tool automatically maps ESLint plugins to oxlint's built-in equivalents. The following table is for reference when reviewing the generated config:
 
-| ESLint Plugin | Oxlint Plugin Name |
-|---|---|
-| `@typescript-eslint/eslint-plugin` | `typescript` |
-| `eslint-plugin-react` / `eslint-plugin-react-hooks` | `react` |
-| `eslint-plugin-import` / `eslint-plugin-import-x` | `import` |
-| `eslint-plugin-unicorn` | `unicorn` |
-| `eslint-plugin-jsx-a11y` | `jsx-a11y` |
-| `eslint-plugin-react-perf` | `react-perf` |
-| `eslint-plugin-promise` | `promise` |
-| `eslint-plugin-jest` | `jest` |
-| `@vitest/eslint-plugin` | `vitest` |
-| `eslint-plugin-jsdoc` | `jsdoc` |
-| `eslint-plugin-next` | `nextjs` |
-| `eslint-plugin-node` | `node` |
-| `eslint-plugin-vue` | `vue` |
+| ESLint Plugin                                       | Oxlint Plugin Name |
+| --------------------------------------------------- | ------------------ |
+| `@typescript-eslint/eslint-plugin`                  | `typescript`       |
+| `eslint-plugin-react` / `eslint-plugin-react-hooks` | `react`            |
+| `eslint-plugin-import` / `eslint-plugin-import-x`   | `import`           |
+| `eslint-plugin-unicorn`                             | `unicorn`          |
+| `eslint-plugin-jsx-a11y`                            | `jsx-a11y`         |
+| `eslint-plugin-react-perf`                          | `react-perf`       |
+| `eslint-plugin-promise`                             | `promise`          |
+| `eslint-plugin-jest`                                | `jest`             |
+| `@vitest/eslint-plugin`                             | `vitest`           |
+| `eslint-plugin-jsdoc`                               | `jsdoc`            |
+| `eslint-plugin-next`                                | `nextjs`           |
+| `eslint-plugin-node`                                | `node`             |
+| `eslint-plugin-vue`                                 | `vue`              |
 
 Default plugins (enabled when `plugins` field is omitted): `unicorn`, `typescript`, `oxc`.
 Setting the `plugins` array explicitly overrides these defaults.
@@ -108,9 +108,7 @@ For ESLint plugins without a built-in oxlint equivalent, use the `jsPlugins` fie
 
 ```json
 {
-  "jsPlugins": [
-    "eslint-plugin-custom"
-  ],
+  "jsPlugins": ["eslint-plugin-custom"],
   "rules": {
     "custom/my-rule": "warn"
   }
@@ -133,16 +131,17 @@ npx oxlint@latest --fix
 
 ### Common CLI Options
 
-| ESLint | oxlint |
-|---|---|
-| `eslint .` | `oxlint` (default: cwd) |
-| `eslint src/` | `oxlint src/` |
-| `eslint --fix` | `oxlint --fix` |
+| ESLint                    | oxlint                                         |
+| ------------------------- | ---------------------------------------------- |
+| `eslint .`                | `oxlint` (default: cwd)                        |
+| `eslint src/`             | `oxlint src/`                                  |
+| `eslint --fix`            | `oxlint --fix`                                 |
 | `eslint --max-warnings 0` | `oxlint --deny-warnings` or `--max-warnings 0` |
-| `eslint --format json` | `oxlint --format json` |
-| `eslint -c config.json` | `oxlint --config config.json` |
+| `eslint --format json`    | `oxlint --format json`                         |
+| `eslint -c config.json`   | `oxlint --config config.json`                  |
 
 Additional oxlint options:
+
 - `--type-aware`: Enable rules requiring TypeScript type information
 - `--tsconfig <path>`: Specify tsconfig.json path for type-aware linting
 
@@ -159,4 +158,3 @@ Additional oxlint options:
 
 - [CLI Reference](https://oxc.rs/docs/guide/usage/linter/cli.html)
 - [Config File Reference](https://oxc.rs/docs/guide/usage/linter/config-file-reference.html)
-
