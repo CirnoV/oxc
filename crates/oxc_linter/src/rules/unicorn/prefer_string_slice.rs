@@ -36,7 +36,7 @@ declare_oxc_lint!(
     PreferStringSlice,
     unicorn,
     pedantic,
-    fix
+    conditional_fix
 );
 
 impl Rule for PreferStringSlice {
@@ -53,8 +53,18 @@ impl Rule for PreferStringSlice {
             if !matches!(v.property.name.as_str(), "substr" | "substring") {
                 return;
             }
+            let method_name = v.property.name.as_str();
+            let has_unsafe_substr_arguments = method_name == "substr"
+                && (call_expr.arguments.len() >= 2
+                    || call_expr.arguments.iter().any(oxc_ast::ast::Argument::is_spread));
+
+            if has_unsafe_substr_arguments {
+                ctx.diagnostic(prefer_string_slice_diagnostic(v.property.span, method_name));
+                return;
+            }
+
             ctx.diagnostic_with_fix(
-                prefer_string_slice_diagnostic(v.property.span, v.property.name.as_str()),
+                prefer_string_slice_diagnostic(v.property.span, method_name),
                 |fixer| fixer.replace(v.property.span, "slice"),
             );
         }
@@ -90,6 +100,7 @@ fn test() {
         r#""foo".substr()"#,
         r#""foo".substr(1)"#,
         r#""foo".substr(1, 2)"#,
+        r#""foo".substr(11, 8)"#,
         r#""foo".substr(bar.length, Math.min(baz, 100))"#,
         r#""foo".substr(1, length)"#,
         r#""foo".substr(1, "abc".length)"#,
@@ -168,7 +179,6 @@ fn test() {
         //     "foo".slice(0, Math.max(0, length))"#,
         // ),
         // (r#""foo".substr(0, -1)"#, r#""foo".slice(0, 0)"#),
-        (r#""foo".substr(0, "foo".length)"#, r#""foo".slice(0, "foo".length)"#),
         (
             "const uri = 'foo';
             ((uri || '')).substr(1)",
