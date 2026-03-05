@@ -9,23 +9,33 @@ use super::formatter::{FormatElement, group_id::UniqueGroupIdBuilder};
 pub type EmbeddedFormatterCallback =
     Arc<dyn Fn(&str, &str) -> Result<String, String> + Send + Sync>;
 
-/// Callback function type for formatting embedded code via Doc in batch.
+/// Result of formatting embedded code via the Doc→IR path.
 ///
-/// Takes (allocator, group_id_builder, tag_name, texts) and returns one `Vec<FormatElement<'a>>` per input.
+/// The variant depends on the language being formatted:
+/// - GraphQL: multiple IRs (one per quasi text)
+/// - CSS: single IR with placeholder survival count
+pub enum EmbeddedDocResult<'a> {
+    /// Multiple IRs, one per input text (used by GraphQL).
+    MultipleDocs(Vec<Vec<FormatElement<'a>>>),
+    /// Single IR with placeholder count (used by CSS).
+    /// The count indicates how many `@prettier-placeholder-N-id` patterns survived formatting.
+    DocWithPlaceholders(Vec<FormatElement<'a>>, usize),
+}
+
+/// Callback function type for formatting embedded code via Doc.
+///
+/// Takes (allocator, group_id_builder, language, texts) and returns [`EmbeddedDocResult`].
 /// Used for the Doc→IR path (e.g., `JS:printToDoc()` → Doc JSON → `Rust:FormatElement`).
 ///
 /// The `&Allocator` allows the callback to allocate arena strings for `FormatElement::Text`.
 /// The `&UniqueGroupIdBuilder` allows the callback to create `GroupId`s for group/conditional constructs.
-///
-/// For GraphQL, each quasi is a separate text (`texts.len() == quasis.len()`).
-/// For CSS/HTML, quasis are joined with placeholders into a single text (`texts.len() == 1`).
 pub type EmbeddedDocFormatterCallback = Arc<
     dyn for<'a> Fn(
             &'a Allocator,
             &UniqueGroupIdBuilder,
             &str,
             &[&str],
-        ) -> Result<Vec<Vec<FormatElement<'a>>>, String>
+        ) -> Result<EmbeddedDocResult<'a>, String>
         + Send
         + Sync,
 >;
@@ -90,31 +100,19 @@ impl ExternalCallbacks {
         self.embedded_formatter.as_ref().map(|cb| cb(tag_name, code))
     }
 
-    /// Format embedded code as Doc in batch.
+    /// Format embedded code as Doc.
     ///
-    /// Takes multiple texts and returns one `Vec<FormatElement<'a>>` per input text.
-    /// The caller is responsible for interleaving the results with JS expressions.
-    ///
-    /// # Arguments
-    /// * `allocator` - The arena allocator for allocating strings in `FormatElement::Text`
-    /// * `group_id_builder` - Builder for creating unique `GroupId`s
-    /// * `tag_name` - The template tag (e.g., "css", "gql", "html")
-    /// * `texts` - The code texts to format (multiple quasis for GraphQL, single joined text for CSS/HTML)
-    ///
-    /// # Returns
-    /// * `Some(Ok(Vec<Vec<FormatElement<'a>>>))` - The formatted code as FormatElements for each input text
-    /// * `Some(Err(String))` - An error message if formatting failed
-    /// * `None` - No embedded formatter callback is set
+    /// The result variant depends on the language (see [`EmbeddedDocResult`]).
     pub fn format_embedded_doc<'a>(
         &self,
         allocator: &'a Allocator,
         group_id_builder: &UniqueGroupIdBuilder,
-        tag_name: &str,
+        language: &str,
         texts: &[&str],
-    ) -> Option<Result<Vec<Vec<FormatElement<'a>>>, String>> {
+    ) -> Option<Result<EmbeddedDocResult<'a>, String>> {
         self.embedded_doc_formatter
             .as_ref()
-            .map(|cb| cb(allocator, group_id_builder, tag_name, texts))
+            .map(|cb| cb(allocator, group_id_builder, language, texts))
     }
 
     /// Sort Tailwind CSS classes.
