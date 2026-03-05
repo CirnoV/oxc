@@ -79,6 +79,7 @@
     "react/jsx-child-element-spacing": "Stylistic rule from eslint-plugin-react. Should use Oxfmt for stylistic rules, or use JS Plugins to enable this rule.",
     "react/jsx-one-expression-per-line": "Stylistic rule from eslint-plugin-react. Should use Oxfmt for stylistic rules, or use JS Plugins to enable this rule.",
     "react/jsx-sort-props": "Stylistic rule from eslint-plugin-react. Should use Oxfmt for stylistic rules, or use JS Plugins to enable this rule.",
+    "react/no-adjacent-inline-elements": "Stylistic rule from eslint-plugin-react. Should use Oxfmt for stylistic rules, or use JS Plugins to enable this rule.",
 
     "react/config": "React Compiler rules will not be implemented in oxlint for now, as they require integration with the react compiler itself. These rules can be used via JS Plugins if desired.",
     "react/error-boundaries": "React Compiler rules will not be implemented in oxlint for now, as they require integration with the react compiler itself. These rules can be used via JS Plugins if desired.",
